@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox France - Initialisation</title>
+
+    <style>
+        /* Importation de polices : Orbitron pour le côté futuriste, Montserrat pour la clarté */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Orbitron:wght@400;700;900&display=swap');
+
+        :root {
+            --primary: #ffffff;
+            --secondary: #00d4ff;
+            --accent: #ff004c;
+            --background: #020202;
+            --panel-bg: rgba(10, 10, 10, 0.9);
+            --glow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: default;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            /* Empêche tout défilement */
+        }
+
+        /* --- EFFET DE FOND (GRID & PARTICLES) --- */
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 2;
+        }
+
+        /* --- CONTENEUR CENTRAL --- */
+        .interface-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 95%;
+            max-width: 1000px;
+            padding: 2px;
+            /* Pour l'effet de bordure lumineuse */
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            border-radius: 20px;
+            animation: border-glow 4s linear infinite;
+        }
+
+        @keyframes border-glow {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .inner-content {
+            background: var(--panel-bg);
+            border-radius: 18px;
+            padding: 60px 40px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        /* --- TYPOGRAPHIE --- */
+        .site-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            background: linear-gradient(to bottom, #fff 40%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--secondary);
+            margin-bottom: 50px;
+            opacity: 0.8;
+        }
+
+        /* --- BLOC COMPTE À REBOURS --- */
+        .timer-layout {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .time-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            min-width: 140px;
+            border-radius: 15px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .time-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--secondary);
+        }
+
+        .number {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .label {
+            display: block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            margin-top: 15px;
+            color: #666;
+            letter-spacing: 2px;
+        }
+
+        /* --- ÉLÉMENTS DE SYSTÈME --- */
+        .loading-zone {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .progress-bar-bg {
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            width: 100%;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            position: absolute;
+            height: 100%;
+            width: 0%;
+            background: var(--secondary);
+            box-shadow: 0 0 15px var(--secondary);
+            transition: width 1s linear;
+        }
+
+        .console-text {
+            font-family: monospace;
+            font-size: 0.7rem;
+            color: #444;
+            text-transform: uppercase;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .site-title {
+                font-size: 1.8rem;
+                letter-spacing: 5px;
+            }
+
+            .timer-layout {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .time-card {
+                min-width: 100px;
+                padding: 15px;
+            }
+
+            .number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="canvas-bg"></canvas>
+    <div class="grid-overlay"></div>
+
+    <div class="interface-wrapper">
+        <div class="inner-content">
+            <h1 class="site-title">Roblox France</h1>
+            <p class="subtitle">Ouverture du site</p>
+
+            <div class="timer-layout">
+                <div class="time-card">
+                    <span class="number" id="days">00</span>
+                    <span class="label">Jours</span>
+                </div>
+                <div class="time-card">
+                    <span class="number" id="hours">00</span>
+                    <span class="label">Heures</span>
+                </div>
+                <div class="time-card">
+                    <span class="number" id="minutes">00</span>
+                    <span class="label">Minutes</span>
+                </div>
+                <div class="time-card">
+                    <span class="number" id="seconds">00</span>
+                    <span class="label">Secondes</span>
+                </div>
+            </div>
+
+            <div class="loading-zone">
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progress-line"></div>
+                </div>
+                <div class="console-text" id="console">Système en attente de synchronisation...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIGURATION ---
+        const TARGET_DATE = new Date("Feb 15, 2026 00:00:00").getTime();
+        const REDIRECT_URL = "https://roblox-fr-community.vercel.app";
+
+        // --- MOTEUR DU COMPTE À REBOURS ---
+        function runCountdown() {
+            const now = new Date().getTime();
+            const gap = TARGET_DATE - now;
+
+            // Calculs temporels
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
+
+            const d = Math.floor(gap / day);
+            const h = Math.floor((gap % day) / hour);
+            const m = Math.floor((gap % hour) / minute);
+            const s = Math.floor((gap % minute) / second);
+
+            // Mise à jour de l'affichage avec sécurité 0
+            document.getElementById("days").innerText = d.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
+
+            // Animation de la barre de progression (cycle de 60s)
+            const progressPercent = (s / 60) * 100;
+            document.getElementById("progress-line").style.width = progressPercent + "%";
+
+            // Mise à jour de la console fictive
+            updateConsole(s);
+
+            // Redirection
+            if (gap <= 0) {
+                clearInterval(timerId);
+                document.getElementById("console").innerText = "CONNEXION ÉTABLIE. REDIRECTION...";
+                window.location.href = REDIRECT_URL;
+            }
+        }
+
+        function updateConsole(s) {
+            const messages = [
+                "Vérification des serveurs...",
+                "Optimisation du netcode...",
+                "Chargement des assets...",
+                "Synchronisation globale...",
+                "Sécurisation de la liaison..."
+            ];
+            if (s % 10 === 0) {
+                document.getElementById("console").innerText = messages[Math.floor(Math.random() * messages.length)];
+            }
+        }
+
+        const timerId = setInterval(runCountdown, 1000);
+        runCountdown();
+
+        // --- MOTEUR DE FOND (CANVAS) ---
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.speed = Math.random() * 0.5 + 0.1;
+                this.radius = Math.random() * 1.5;
+            }
+            update() {
+                this.y -= this.speed;
+                if (this.y < 0) {
+                    this.y = canvas.height;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            resize();
+            for (let i = 0; i < 150; i++) {
+                particles.push(new Particle());
+            }
+            animate();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resize);
+        init();
+
+    </script>
+</body>
+
+</html>
