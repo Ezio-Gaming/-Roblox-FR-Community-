@@ -1,362 +1,292 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox France - Initialisation</title>
-
+    <title>Roblox France - Lancement Officiel</title>
+    
     <style>
-        /* Importation de polices : Orbitron pour le côté futuriste, Montserrat pour la clarté */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Orbitron:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap');
 
         :root {
-            --primary: #ffffff;
-            --secondary: #00d4ff;
-            --accent: #ff004c;
-            --background: #020202;
-            --panel-bg: rgba(10, 10, 10, 0.9);
-            --glow: 0 0 20px rgba(255, 255, 255, 0.2);
+            --neon-blue: #00d4ff;
+            --neon-purple: #9d00ff;
+            --bg-deep: #020205;
+            --glass-panel: rgba(255, 255, 255, 0.03);
+            --border-line: rgba(255, 255, 255, 0.1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: default;
+            user-select: none;
         }
 
         body {
-            background-color: var(--background);
-            color: var(--primary);
-            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-deep);
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
             height: 100vh;
-            width: 100vw;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            /* Empêche tout défilement */
         }
 
-        /* --- EFFET DE FOND (GRID & PARTICLES) --- */
-        #canvas-bg {
+        /* --- BACKGROUND ANIMATION --- */
+        #bg-effect {
             position: fixed;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 1;
         }
 
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: 2;
-        }
-
-        /* --- CONTENEUR CENTRAL --- */
-        .interface-wrapper {
+        /* --- MAIN INTERFACE --- */
+        .wrapper {
             position: relative;
             z-index: 10;
-            width: 95%;
-            max-width: 1000px;
-            padding: 2px;
-            /* Pour l'effet de bordure lumineuse */
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            border-radius: 20px;
-            animation: border-glow 4s linear infinite;
-        }
-
-        @keyframes border-glow {
-            0% {
-                filter: hue-rotate(0deg);
-            }
-
-            100% {
-                filter: hue-rotate(360deg);
-            }
-        }
-
-        .inner-content {
-            background: var(--panel-bg);
-            border-radius: 18px;
-            padding: 60px 40px;
+            width: 90%;
+            max-width: 1100px;
+            padding: 50px;
+            background: var(--glass-panel);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--border-line);
+            border-radius: 50px;
             text-align: center;
-            backdrop-filter: blur(10px);
+            box-shadow: 0 0 100px rgba(0, 0, 0, 0.8);
+            animation: fadeIn 2s ease-out;
         }
 
-        /* --- TYPOGRAPHIE --- */
-        .site-title {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- LOGO ET TITRE --- */
+        .brand-section {
+            margin-bottom: 40px;
+        }
+
+        .brand-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 7vw, 5rem);
             font-weight: 900;
-            letter-spacing: 12px;
+            letter-spacing: 10px;
             text-transform: uppercase;
-            margin-bottom: 10px;
-            background: linear-gradient(to bottom, #fff 40%, #888 100%);
+            background: linear-gradient(135deg, #fff 0%, var(--neon-blue) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.4));
         }
 
-        .subtitle {
-            font-size: 0.9rem;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            color: var(--secondary);
-            margin-bottom: 50px;
-            opacity: 0.8;
-        }
-
-        /* --- BLOC COMPTE À REBOURS --- */
-        .timer-layout {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .time-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 25px;
-            min-width: 140px;
-            border-radius: 15px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .time-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.07);
-            border-color: var(--secondary);
-        }
-
-        .number {
-            display: block;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1;
-        }
-
-        .label {
-            display: block;
-            font-size: 0.65rem;
-            text-transform: uppercase;
+        .release-date-box {
+            display: inline-block;
             margin-top: 15px;
-            color: #666;
+            padding: 10px 30px;
+            border-left: 3px solid var(--neon-blue);
+            border-right: 3px solid var(--neon-blue);
+            background: rgba(0, 212, 255, 0.05);
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            font-size: 1.1rem;
             letter-spacing: 2px;
         }
 
-        /* --- ÉLÉMENTS DE SYSTÈME --- */
-        .loading-zone {
-            max-width: 600px;
+        /* --- COUNTDOWN GRID --- */
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .time-node {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 35px 15px;
+            border-radius: 25px;
+            border: 1px solid var(--border-line);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .time-node:hover {
+            transform: translateY(-15px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .val-num {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 3.8rem);
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .val-label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #666;
+            margin-top: 10px;
+            letter-spacing: 3px;
+        }
+
+        /* --- LOADING ENGINE --- */
+        .engine-status {
+            max-width: 700px;
             margin: 0 auto;
         }
 
-        .progress-bar-bg {
-            height: 2px;
-            background: rgba(255, 255, 255, 0.1);
+        .progress-track {
+            height: 3px;
+            background: rgba(255, 255, 255, 0.05);
             width: 100%;
+            border-radius: 5px;
+            overflow: hidden;
             margin-bottom: 20px;
-            position: relative;
         }
 
-        .progress-bar-fill {
-            position: absolute;
+        .progress-fill {
             height: 100%;
             width: 0%;
-            background: var(--secondary);
-            box-shadow: 0 0 15px var(--secondary);
-            transition: width 1s linear;
+            background: var(--neon-blue);
+            box-shadow: 0 0 20px var(--neon-blue);
+            transition: width 0.5s linear;
         }
 
-        .console-text {
-            font-family: monospace;
-            font-size: 0.7rem;
+        .console-logs {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.8rem;
             color: #444;
-            text-transform: uppercase;
+            height: 20px;
         }
 
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 768px) {
-            .site-title {
-                font-size: 1.8rem;
-                letter-spacing: 5px;
-            }
-
-            .timer-layout {
-                flex-wrap: wrap;
-                gap: 15px;
-            }
-
-            .time-card {
-                min-width: 100px;
-                padding: 15px;
-            }
-
-            .number {
-                font-size: 2rem;
-            }
+        /* RESPONSIVE */
+        @media (max-width: 700px) {
+            .timer-grid { grid-template-columns: repeat(2, 1fr); }
+            .wrapper { padding: 30px 20px; }
         }
     </style>
 </head>
-
 <body>
 
-    <canvas id="canvas-bg"></canvas>
-    <div class="grid-overlay"></div>
+    <canvas id="bg-effect"></canvas>
 
-    <div class="interface-wrapper">
-        <div class="inner-content">
-            <h1 class="site-title">Roblox France</h1>
-            <p class="subtitle">Ouverture du site</p>
+    <div class="wrapper">
+        <div class="brand-section">
+            <h1 class="brand-title">Roblox France</h1>
+            <div class="release-date-box">SAMEDI 21 FÉVRIER 2026 a 15:30</div>
+        </div>
 
-            <div class="timer-layout">
-                <div class="time-card">
-                    <span class="number" id="days">00</span>
-                    <span class="label">Jours</span>
-                </div>
-                <div class="time-card">
-                    <span class="number" id="hours">00</span>
-                    <span class="label">Heures</span>
-                </div>
-                <div class="time-card">
-                    <span class="number" id="minutes">00</span>
-                    <span class="label">Minutes</span>
-                </div>
-                <div class="time-card">
-                    <span class="number" id="seconds">00</span>
-                    <span class="label">Secondes</span>
-                </div>
+        <div class="timer-grid">
+            <div class="time-node">
+                <span class="val-num" id="d">00</span>
+                <span class="val-label">Jours</span>
             </div>
-
-            <div class="loading-zone">
-                <div class="progress-bar-bg">
-                    <div class="progress-bar-fill" id="progress-line"></div>
-                </div>
-                <div class="console-text" id="console">Système en attente de synchronisation...</div>
+            <div class="time-node">
+                <span class="val-num" id="h">00</span>
+                <span class="val-label">Heures</span>
             </div>
+            <div class="time-node">
+                <span class="val-num" id="m">00</span>
+                <span class="val-label">Minutes</span>
+            </div>
+            <div class="time-node">
+                <span class="val-num" id="s">00</span>
+                <span class="val-label">Secondes</span>
+            </div>
+        </div>
+
+        <div class="engine-status">
+            <div class="progress-track">
+                <div class="progress-fill" id="bar"></div>
+            </div>
+            <div class="console-logs" id="log-display">Initialisation des systèmes...</div>
         </div>
     </div>
 
     <script>
-        // --- CONFIGURATION ---
-        const TARGET_DATE = new Date("Feb 15, 2026 00:00:00").getTime();
-        const REDIRECT_URL = "https://roblox-fr-community.vercel.app";
+        // --- CONFIGURATION DE LA DATE ---
+        const TARGET_DATE = new Date("Feb 21, 2026 15:30:00").getTime();
+        const REDIRECT_LINK = "https://roblox-fr-community.vercel.app";
 
-        // --- MOTEUR DU COMPTE À REBOURS ---
-        function runCountdown() {
+        function updateCountdown() {
             const now = new Date().getTime();
             const gap = TARGET_DATE - now;
 
-            // Calculs temporels
-            const second = 1000;
-            const minute = second * 60;
-            const hour = minute * 60;
-            const day = hour * 24;
-
-            const d = Math.floor(gap / day);
-            const h = Math.floor((gap % day) / hour);
-            const m = Math.floor((gap % hour) / minute);
-            const s = Math.floor((gap % minute) / second);
-
-            // Mise à jour de l'affichage avec sécurité 0
-            document.getElementById("days").innerText = d.toString().padStart(2, '0');
-            document.getElementById("hours").innerText = h.toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
-            document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
-
-            // Animation de la barre de progression (cycle de 60s)
-            const progressPercent = (s / 60) * 100;
-            document.getElementById("progress-line").style.width = progressPercent + "%";
-
-            // Mise à jour de la console fictive
-            updateConsole(s);
-
-            // Redirection
             if (gap <= 0) {
-                clearInterval(timerId);
-                document.getElementById("console").innerText = "CONNEXION ÉTABLIE. REDIRECTION...";
-                window.location.href = REDIRECT_URL;
+                document.getElementById("log-display").innerText = "LANCEMENT EN COURS...";
+                window.location.href = REDIRECT_LINK;
+                return;
+            }
+
+            const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+            const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((gap % (1000 * 60)) / 1000);
+
+            document.getElementById("d").innerText = d.toString().padStart(2, '0');
+            document.getElementById("h").innerText = h.toString().padStart(2, '0');
+            document.getElementById("m").innerText = m.toString().padStart(2, '0');
+            document.getElementById("s").innerText = s.toString().padStart(2, '0');
+
+            // Barre de progression cyclique
+            document.getElementById("bar").style.width = (s / 60 * 100) + "%";
+
+            // Logs système dynamiques
+            if (s % 8 === 0) {
+                const phrases = [
+                    "Synchronisation des serveurs FR...",
+                    "Préparation des assets de la communauté...",
+                    "Vérification du protocole de sécurité...",
+                    "Optimisation de la bande passante...",
+                    "Liaison satellite en cours..."
+                ];
+                document.getElementById("log-display").innerText = phrases[Math.floor(Math.random() * phrases.length)];
             }
         }
 
-        function updateConsole(s) {
-            const messages = [
-                "Vérification des serveurs...",
-                "Optimisation du netcode...",
-                "Chargement des assets...",
-                "Synchronisation globale...",
-                "Sécurisation de la liaison..."
-            ];
-            if (s % 10 === 0) {
-                document.getElementById("console").innerText = messages[Math.floor(Math.random() * messages.length)];
-            }
-        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
 
-        const timerId = setInterval(runCountdown, 1000);
-        runCountdown();
-
-        // --- MOTEUR DE FOND (CANVAS) ---
-        const canvas = document.getElementById('canvas-bg');
+        // --- BACKGROUND ANIMATION (PARTICULES) ---
+        const canvas = document.getElementById('bg-effect');
         const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.speed = Math.random() * 0.5 + 0.1;
-                this.radius = Math.random() * 1.5;
-            }
-            update() {
-                this.y -= this.speed;
-                if (this.y < 0) {
-                    this.y = canvas.height;
-                    this.x = Math.random() * canvas.width;
-                }
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
-                ctx.fill();
-            }
-        }
+        let dots = [];
 
         function init() {
-            resize();
-            for (let i = 0; i < 150; i++) {
-                particles.push(new Particle());
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            dots = [];
+            for (let i = 0; i < 100; i++) {
+                dots.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    r: Math.random() * 2,
+                    v: Math.random() * 0.5 + 0.1
+                });
             }
-            animate();
         }
 
-        function animate() {
+        function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
+            ctx.fillStyle = "rgba(0, 212, 255, 0.2)";
+            dots.forEach(d => {
+                ctx.beginPath();
+                ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+                ctx.fill();
+                d.y -= d.v;
+                if (d.y < 0) d.y = canvas.height;
             });
-            requestAnimationFrame(animate);
+            requestAnimationFrame(draw);
         }
 
-        window.addEventListener('resize', resize);
+        window.addEventListener('resize', init);
         init();
-
+        draw();
     </script>
 </body>
-
 </html>
