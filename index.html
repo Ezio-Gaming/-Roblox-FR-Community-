@@ -2,256 +2,159 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>DOCUMENT_OFFICIEL_MAINTENANCE_V4.02</title>
+    <title>SITE EN TRAVAUX - GROUPE ROBLOX</title>
     <style>
-        /* CSS : STYLE DOCUMENTAIRE SOBRE (Lignes 10-100) */
+        /* STYLE SIMPLE ET PROPRE */
         body {
-            background-color: #ffffff;
-            color: #000000;
-            font-family: "Times New Roman", Times, serif;
-            margin: 0;
-            padding: 40px;
-            line-height: 1.5;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: auto;
-            border: 1px solid #000;
-            padding: 30px;
-        }
-
-        .header-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 30px;
-        }
-
-        .header-table td {
-            border: 1px solid #000;
-            padding: 10px;
-            font-size: 12px;
-            vertical-align: top;
-        }
-
-        .announcement {
-            background-color: #f0f0f0;
-            border: 2px solid #000;
-            padding: 25px;
-            margin: 30px 0;
-            font-size: 18px;
-        }
-
-        h1 { font-size: 24px; text-decoration: underline; text-align: center; }
-        h2 { font-size: 20px; border-bottom: 1px solid #000; margin-top: 40px; }
-        
-        .toc { margin: 20px 0; padding: 15px; border: 1px dashed #000; }
-        .toc ul { list-style: none; padding-left: 10px; }
-
-        table.data-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 11px;
-            margin: 20px 0;
-        }
-
-        table.data-table th, table.data-table td {
-            border: 1px solid #000;
-            padding: 4px;
-        }
-
-        .protocol-list {
-            font-size: 13px;
-        }
-
-        .footer {
-            margin-top: 50px;
-            font-size: 10px;
+            background-color: #f4f4f4;
+            color: #333;
+            font-family: Arial, sans-serif;
             text-align: center;
-            color: #666;
+            padding: 50px;
+            margin: 0;
         }
 
-        /* Classes pour allonger le code */
-        .p-10 { padding: 10px; }
-        .m-t-5 { margin-top: 5px; }
-        .bold { font-weight: bold; }
-        .italic { font-style: italic; }
+        .boite {
+            background-color: white;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #d32f2f;
+            font-size: 32px;
+        }
+
+        .message-important {
+            font-size: 18px;
+            line-height: 1.6;
+            background-color: #fff3f3;
+            padding: 20px;
+            border-left: 5px solid #d32f2f;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .section-texte {
+            text-align: left;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .liste-longue {
+            list-style: none;
+            padding: 0;
+        }
+
+        .liste-longue li {
+            padding: 5px 0;
+            border-bottom: 1px solid #fafafa;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 12px;
+            color: #999;
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    
-    <table class="header-table">
-        <tr>
-            <td width="50%">
-                <strong>GROUPE ROBLOX : SERVICES TECHNIQUES</strong><br>
-                Département du Développement Web<br>
-                Réf : MAINTENANCE-2026-X9
-            </td>
-            <td>
-                <strong>STATUT DU SITE :</strong> FERMÉ<br>
-                <strong>PRIORITÉ :</strong> CRITIQUE<br>
-                <strong>DATE :</strong> 16 Février 2026
-            </td>
-        </tr>
-    </table>
+    <div class="boite">
+        <h1>🚧 Site en Maintenance 🚧</h1>
 
-    <h1>RAPPORT DE MAINTENANCE ET RESTRUCTURATION DU SITE</h1>
-
-    <div class="announcement">
-        <strong>MESSAGE DE L'ADMINISTRATION :</strong><br><br>
-        Bonjour, désolé mais pour l'instant le site ne sera pas ouvert car notre équipe travaille actuellement sur le développement du groupe et du site. Nous effectuons une mise à jour majeure de la base de données et du système de rangs pour assurer une meilleure expérience à tous nos membres.
-    </div>
-
-    <div class="toc">
-        <strong>SOMMAIRE :</strong>
-        <ul>
-            <li>1.0 Introduction et objectifs de la maintenance</li>
-            <li>2.0 État des noeuds de serveurs (Global)</li>
-            <li>3.0 Protocole de sécurité et de déploiement</li>
-            <li>4.0 Indexation des ressources système</li>
-            <li>5.0 Règlement et conformité du groupe</li>
-        </ul>
-    </div>
-
-    <h2>1.0 INTRODUCTION</h2>
-    <p>
-        Ce document atteste de la mise hors ligne volontaire des services web liés au groupe. La restructuration vise à corriger les failles d'indexation rencontrées lors de la version précédente et à intégrer les nouveaux outils de gestion communautaire.
-    </p>
-
-    <h2>2.0 ÉTAT DES NOEUDS DE SERVEURS</h2>
-    <table class="data-table">
-        <thead>
-            <tr>
-                <th>NODE_ID</th>
-                <th>LOCALISATION</th>
-                <th>LATENCE</th>
-                <th>STATUT SYSTÈME</th>
-            </tr>
-        </thead>
-        <tbody id="server-rows">
-            <tr><td>SRV-001-A</td><td>Europe (Paris)</td><td>-- ms</td><td>DÉSACTIVÉ</td></tr>
-            <tr><td>SRV-002-B</td><td>Europe (Londres)</td><td>-- ms</td><td>MAINTENANCE</td></tr>
-            <tr><td>SRV-003-C</td><td>North America (NY)</td><td>-- ms</td><td>DÉSACTIVÉ</td></tr>
-            <tr><td>SRV-004-D</td><td>North America (LA)</td><td>-- ms</td><td>HORS-LIGNE</td></tr>
-            <tr><td>SRV-005-E</td><td>Asia (Tokyo)</td><td>-- ms</td><td>MAINTENANCE</td></tr>
-            <tr><td>SRV-006-F</td><td>South America (Brazil)</td><td>-- ms</td><td>DÉSACTIVÉ</td></tr>
-        </tbody>
-    </table>
-
-    <h2>3.0 PROTOCOLE DE DÉPLOIEMENT</h2>
-    <div class="protocol-list">
-        <p>3.1. Désactivation du portail d'authentification utilisateur.</p>
-        <p>3.2. Sauvegarde chiffrée de la base de données des membres (Membres : 12,450).</p>
-        <p>3.3. Analyse des scripts de classement automatique (RankingSystem.lua).</p>
-        <p>3.4. Nettoyage des fichiers temporaires du serveur de cache.</p>
-        <p>3.5. Vérification des certificats SSL/TLS.</p>
-        <p>3.6. Mise à jour des permissions du mur du groupe.</p>
-        <p>3.7. Test d'injection SQL sur les formulaires de contact.</p>
-        <p>3.8. Reconfiguration du pare-feu (Firewall) communautaire.</p>
-        <p>3.9. Migration des actifs (Assets) vers le nouveau CDN.</p>
-        <p>3.10. Révision des journaux d'erreurs internes.</p>
-        <p>3.11. Optimisation du temps de réponse de l'API Roblox.</p>
-        <p>3.12. Intégration du nouveau système de boutique de vêtements.</p>
-        <p>3.13. Validation du code CSS pour la compatibilité mobile.</p>
-        <p>3.14. Vérification de l'intégrité des données de profil.</p>
-        <p>3.15. Synchronisation des rôles Discord et Roblox.</p>
-    </div>
-
-    <h2>4.0 INDEXATION DES RESSOURCES (AUTO-GÉNÉRÉ)</h2>
-    <div id="file-directory" style="font-size: 10px; color: #333; height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px;">
+        <div class="message-important">
+            <strong>Bonjour à tous,</strong><br><br>
+            Désolé, mais pour l'instant le site ne sera pas ouvert. Notre équipe travaille activement sur le développement du groupe et du site pour vous offrir la meilleure expérience possible sur Roblox.<br><br>
+            Merci de votre patience et à très bientôt !
         </div>
 
-    <div class="footer">
-        DOCUMENT GÉNÉRÉ AUTOMATIQUEMENT PAR LE SYSTÈME DE GESTION DE GROUPE.<br>
-        TOUTE REPRODUCTION EST INTERDITE SANS AUTORISATION DE L'ADMINISTRATEUR.<br>
-        CODE SOURCE V4.02 - FIN DU DOCUMENT.
+        <div class="section-texte">
+            <h3>📌 Informations sur le projet</h3>
+            <p>Voici l'avancée des travaux sur lesquels nous bossons en ce moment :</p>
+            
+            <ul class="liste-longue">
+                <li>• Création de la nouvelle interface utilisateur.</li>
+                <li>• Configuration des scripts de rangs automatiques.</li>
+                <li>• Nettoyage de la base de données des membres.</li>
+                <li>• Test des nouveaux serveurs de jeu.</li>
+                <li>• Mise à jour du règlement intérieur.</li>
+                <li>• Préparation des nouveaux vêtements du groupe.</li>
+                <li>• Vérification de la sécurité anti-bot.</li>
+                <li>• Amélioration du temps de chargement des pages.</li>
+                <li>• Ajout d'un système de tickets pour le support.</li>
+                <li>• Synchronisation avec les serveurs de secours.</li>
+                <li>• Réorganisation des rôles dans le staff.</li>
+                <li>• Correction des bugs de connexion signalés.</li>
+                <li>• Optimisation des images et logos.</li>
+                <li>• Préparation des événements de réouverture.</li>
+                <li>• Vérification des liens de redirection.</li>
+                <li>• Test de la boutique intégrée.</li>
+                <li>• Ajout de nouvelles animations CSS.</li>
+                <li>• Mise en place du journal des modifications.</li>
+                <li>• Rédaction des tutoriels pour les nouveaux membres.</li>
+                <li>• Nettoyage du code source du site.</li>
+                </ul>
+        </div>
+
+        <div class="section-texte">
+            <h3>📜 Règlement du Groupe (Extrait)</h3>
+            <p>Pour rappel, voici les règles à respecter :</p>
+            <div id="reglement-long">
+                </div>
+        </div>
+
+        <footer>
+            Propriété exclusive du Groupe Roblox - Tous droits réservés &copy; 2026
+        </footer>
     </div>
 
-</div>
+    <script>
+        /* JAVASCRIPT SIMPLE POUR ALLONGER LA PAGE */
+        
+        const reglementDiv = document.getElementById('reglement-long');
+        let contenuReglement = "";
 
-<script>
-/* =========================================
-   JAVASCRIPT TECHNIQUE (Lignes 200-500+)
-   ========================================= */
+        // On crée une boucle qui écrit 100 règles pour faire un code très long
+        for (let i = 1; i <= 100; i++) {
+            contenuReglement += "Règle n°" + i + " : Respecter le bon fonctionnement du site et ne pas tenter de modifier le code source.<br>";
+        }
 
-// Fonction pour générer une liste massive de fichiers techniques
-function generateDirectory() {
-    const dir = document.getElementById('file-directory');
-    const folders = ['root', 'src', 'bin', 'etc', 'usr', 'var', 'lib', 'assets', 'api', 'dev'];
-    const files = ['main.js', 'index.php', 'config.json', 'style.css', 'init.py', 'security.sh', 'db_backup.sql', 'readme.txt'];
-    
-    let content = "";
-    
-    // Génération de 200 lignes de "fichiers" pour allonger la page
-    for (let i = 0; i < 200; i++) {
-        const randomFolder = folders[Math.floor(Math.random() * folders.length)];
-        const randomFile = files[Math.floor(Math.random() * files.length)];
-        const size = Math.floor(Math.random() * 5000) + " KB";
-        content += `C:\\ROBLOX_SYSTEM\\${randomFolder}\\file_${i}_${randomFile} ... [${size}] ... OK<br>`;
-    }
-    
-    dir.innerHTML = content;
-}
+        reglementDiv.innerHTML = contenuReglement;
 
-// Fonction de simulation de vérification
-function runDiagnostics() {
-    console.log("Démarrage du diagnostic système...");
-    const rows = document.getElementById('server-rows');
-    
-    // Ajout de lignes supplémentaires au tableau pour atteindre le quota de lignes
-    for (let j = 10; j < 50; j++) {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>SRV-${j}-X</td><td>Cluster_Local_${j}</td><td>-- ms</td><td>EN ATTENTE</td>`;
-        rows.appendChild(tr);
-    }
-}
+        /* FONCTIONS DE REMPLISSAGE (pour le poids du fichier) */
+        function verifMaintenance() {
+            console.log("Statut : En cours de développement...");
+        }
 
-// Initialisation au chargement
-window.onload = function() {
-    generateDirectory();
-    runDiagnostics();
-    console.log("Système de maintenance prêt. Message affiché.");
-};
+        // On simule des étapes techniques pour le fun
+        const etapes = [
+            "Chargement...", "Vérification...", "Nettoyage...", 
+            "Mise à jour...", "Finalisation...", "Attente..."
+        ];
 
-/* PLUS DE CODE JS POUR ATTEINDRE LES 500 LIGNES :
-   On définit ici des fonctions de calcul inutiles 
-   mais qui simulent une logique complexe.
-*/
+        etapes.forEach(etape => {
+            console.log("Étape système : " + etape);
+        });
 
-function verifyChecksum(data) {
-    let check = 0;
-    for(let k=0; k<100; k++) {
-        check += k;
-    }
-    return true;
-}
-
-function analyzeTrafficPattern() {
-    const pattern = "SECURE";
-    return pattern;
-}
-
-function securityAudit_Alpha() { return "Passed"; }
-function securityAudit_Beta() { return "Passed"; }
-function securityAudit_Gamma() { return "Passed"; }
-function securityAudit_Delta() { return "Passed"; }
-function securityAudit_Epsilon() { return "Passed"; }
-
-// Répétition de logique pour la structure de données
-const system_config = {
-    version: "4.02",
-    author: "Admin",
-    status: "Maintenance",
-    lock: true,
-    protocol: "X-99",
-    sub_modules: ["rank", "store", "chat", "logs", "security", "api"],
-    last_update: "2026-02-16"
-};
-
-/* Fin du script de maintenance */
-</script>
+        // Plus de lignes inutiles pour atteindre ton quota de 500 lignes
+        const configSite = {
+            actif: false,
+            version: "1.0.2",
+            createur: "Admin",
+            langue: "Français",
+            maintenance: true,
+            priorite: "Haute",
+            type: "Communautaire"
+        };
+    </script>
 
 </body>
 </html>
