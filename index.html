@@ -3,392 +3,393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROBLOX GROUP - Maintenance Mode</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <title>MAINTENANCE - GROUPE ROBLOX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
         /* =========================================
-           VARIABLES & RESET
-           ========================================= */
+           1. CSS RESET & VARIABLES (Lignes 15-60)
+           ========================================= 
+        */
         :root {
-            --primary-color: #00a2ff;
-            --accent-color: #ff3e3e;
-            --bg-dark: #0a0b0d;
-            --card-bg: rgba(25, 27, 31, 0.85);
-            --text-main: #ffffff;
-            --text-dim: #a0a0a0;
-            --success: #00e676;
-            --warning: #ffc107;
-            --font-main: 'Montserrat', sans-serif;
-            --font-mono: 'Roboto Mono', monospace;
+            --primary: #00a2ff;
+            --secondary: #061121;
+            --accent: #ff4757;
+            --success: #2ed573;
+            --warning: #ffa502;
+            --bg: #050608;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --text: #ffffff;
+            --text-muted: #888;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            user-select: none;
+            outline: none;
         }
 
-        body, html {
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-dark);
-            font-family: var(--font-main);
-            color: var(--text-main);
-            overflow: hidden; /* Empêche le scroll pendant la maintenance */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
         }
 
         /* =========================================
-           BACKGROUND ANIMÉ (CANVAS)
-           ========================================= */
-        #bg-canvas {
+           2. BACKGROUND ANIMÉ (Lignes 65-100)
+           ========================================= 
+        */
+        #canvas-bg {
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 1;
-        }
-
-        /* =========================================
-           LAYOUT PRINCIPAL
-           ========================================= */
-        .main-wrapper {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            background: radial-gradient(circle at center, rgba(0, 162, 255, 0.05) 0%, transparent 70%);
-        }
-
-        .maintenance-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
             width: 100%;
-            max-width: 900px;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 40px;
-            animation: cardAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes cardAppear {
-            from { opacity: 0; transform: translateY(30px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #0a101a 0%, #050608 100%);
         }
 
         /* =========================================
-           COLONNE GAUCHE - INFO PRINCIPALE
-           ========================================= */
-        .header-section {
-            display: flex;
-            flex-direction: column;
+           3. STRUCTURE LAYOUT (Lignes 105-250)
+           ========================================= 
+        */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        .group-logo {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #333, #000);
-            border: 3px solid var(--primary-color);
-            border-radius: 15px;
-            margin-bottom: 20px;
+        /* Navbar Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 50px;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .rbx-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            border-radius: 10px;
+            transform: rotate(-10deg);
             display: flex;
             justify-content: center;
             align-items: center;
-            font-weight: 900;
-            font-size: 2rem;
-            transform: rotate(-5deg);
-            box-shadow: 0 0 20px rgba(0, 162, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 162, 255, 0.5);
         }
 
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 900;
+        .rbx-icon::after {
+            content: '';
+            width: 18px;
+            height: 18px;
+            background: var(--secondary);
+            border-radius: 3px;
+        }
+
+        .group-name {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            letter-spacing: -1px;
-            margin-bottom: 10px;
-            line-height: 1;
         }
 
-        h1 span {
-            color: var(--primary-color);
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            background: var(--glass);
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .subtitle {
-            font-size: 1.1rem;
-            color: var(--text-dim);
-            margin-bottom: 30px;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 15px;
+        .status-pill {
+            background: rgba(255, 71, 87, 0.1);
+            color: var(--accent);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--accent);
+            display: inline-block;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
         }
 
-        /* Countdown */
-        .timer-container {
-            display: flex;
-            gap: 15px;
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .typewriter-text {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            min-height: 1.6em;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* Dashboard Grid */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
             margin-bottom: 40px;
         }
 
-        .timer-box {
-            background: rgba(255,255,255,0.05);
-            padding: 15px;
-            border-radius: 12px;
-            min-width: 70px;
-            text-align: center;
-            border-bottom: 3px solid var(--primary-color);
+        .card {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
         }
 
-        .timer-val {
-            display: block;
-            font-size: 1.8rem;
-            font-family: var(--font-mono);
-            font-weight: 700;
+        .card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
         }
 
-        .timer-label {
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            color: var(--text-dim);
-        }
-
-        /* Boutons */
-        .actions {
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn {
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            border: none;
+        .card h3 {
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
+            color: var(--primary);
         }
 
-        .btn-primary {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #0081cc;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 162, 255, 0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-        }
-
-        .btn-outline:hover {
-            background: rgba(255,255,255,0.1);
-        }
-
-        /* =========================================
-           COLONNE DROITE - STATS & LOGS
-           ========================================= */
-        .status-section {
-            background: rgba(0,0,0,0.3);
-            border-radius: 15px;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        /* Server Status List */
+        .status-list {
+            list-style: none;
         }
 
         .status-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
         }
 
-        .status-label {
-            font-size: 0.85rem;
-            color: var(--text-dim);
+        .status-item:last-child { border: none; }
+
+        .indicator {
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 0.9rem;
         }
 
         .dot {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background: var(--success);
-            box-shadow: 0 0 10px var(--success);
         }
 
-        .dot.pulse {
-            animation: pulse 1.5s infinite;
+        .dot-green { background: var(--success); box-shadow: 0 0 10px var(--success); }
+        .dot-red { background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+        .dot-orange { background: var(--warning); box-shadow: 0 0 10px var(--warning); }
+
+        /* FAQ Section */
+        .faq-item {
+            margin-bottom: 15px;
         }
 
-        .dot.offline {
-            background: var(--accent-color);
-            box-shadow: 0 0 10px var(--accent-color);
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.3; }
-            100% { opacity: 1; }
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 6px;
-            background: #333;
+        .faq-question {
+            background: rgba(255,255,255,0.05);
+            padding: 15px 20px;
             border-radius: 10px;
-            margin-top: 8px;
-            overflow: hidden;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
         }
 
-        .progress-fill {
-            height: 100%;
-            background: var(--primary-color);
-            width: 0%;
-            transition: width 2s ease-in-out;
+        .faq-answer {
+            padding: 15px 20px;
+            display: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
-        /* Console Log Section */
-        .console-box {
-            flex-grow: 1;
+        /* Console Terminal */
+        .terminal {
             background: #000;
-            border-radius: 10px;
-            padding: 15px;
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: #00ff00;
-            overflow-y: hidden;
-            border: 1px solid #222;
+            border-radius: 15px;
+            padding: 20px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            height: 250px;
+            overflow-y: auto;
+            border: 1px solid #333;
+            margin-top: 40px;
         }
 
-        .console-line {
-            margin-bottom: 5px;
-            opacity: 0.8;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 2px solid transparent;
+        .terminal-header {
+            color: #555;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 5px;
+        }
+
+        .line { margin-bottom: 4px; }
+        .line .cmd { color: var(--success); }
+        .line .val { color: var(--primary); }
+
+        /* Notifications */
+        #notification-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .notification {
+            background: var(--secondary);
+            border-left: 4px solid var(--primary);
+            padding: 15px 25px;
+            margin-top: 10px;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
         }
 
         /* =========================================
-           FOOTER / SOCIAL
-           ========================================= */
-        .footer-credits {
-            margin-top: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.8rem;
-            color: #555;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 850px) {
-            .maintenance-card {
-                grid-template-columns: 1fr;
-                max-width: 500px;
-            }
-            body { overflow-y: auto; }
+           4. RESPONSIVE DESIGN (Lignes 255-300)
+           ========================================= 
+        */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .dashboard { grid-template-columns: 1fr; }
+            header { flex-direction: column; gap: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <canvas id="bg-canvas"></canvas>
+    <canvas id="canvas-bg"></canvas>
 
-    <div class="main-wrapper">
-        <div class="maintenance-card">
+    <div class="container">
+        <header>
+            <div class="logo-box">
+                <div class="rbx-icon"></div>
+                <div class="group-name">Community Hub</div>
+            </div>
+            <div class="header-links">
+                <button onclick="location.reload()" style="background:none; border:1px solid var(--border); color:white; padding:10px 20px; border-radius:10px; cursor:pointer;">Actualiser</button>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="status-pill">SYSTEM_STATUS: OFFLINE</div>
+            <h1>Maintenance.</h1>
+            <div class="typewriter-text" id="typewriter"></div>
             
-            <div class="header-section">
-                <div class="group-logo">R</div>
-                <h1>Group <span>Offline</span></h1>
-                <p class="subtitle">Nous préparons une mise à jour majeure pour la communauté. Revenez d'ici quelques instants.</p>
-                
-                <div class="timer-container">
-                    <div class="timer-box">
-                        <span class="timer-val" id="days">00</span>
-                        <span class="timer-label">Jours</span>
-                    </div>
-                    <div class="timer-box">
-                        <span class="timer-val" id="hours">00</span>
-                        <span class="timer-label">Heures</span>
-                    </div>
-                    <div class="timer-box">
-                        <span class="timer-val" id="minutes">00</span>
-                        <span class="timer-label">Min</span>
-                    </div>
-                    <div class="timer-box">
-                        <span class="timer-val" id="seconds">00</span>
-                        <span class="timer-label">Sec</span>
-                    </div>
-                </div>
+            <div class="progress-container" style="width: 60%; margin: 0 auto; background: #222; height: 8px; border-radius: 10px; overflow: hidden;">
+                <div id="main-progress" style="width: 0%; height: 100%; background: var(--primary); transition: width 0.5s;"></div>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.8rem; color: var(--text-muted)">Progression globale : <span id="progress-val">0</span>%</p>
+        </section>
 
-                <div class="actions">
-                    <button class="btn btn-primary" onclick="window.location.reload()">
-                        Vérifier l'état
-                    </button>
-                    <button class="btn btn-outline" id="btn-discord">
-                        Discord
-                    </button>
-                </div>
-
-                <div class="footer-credits">
-                    <span>&copy; 2024 Roblox Community Group</span>
-                    <span>v2.4.0-build</span>
+        <div class="dashboard">
+            <div class="card">
+                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg> États des Services</h3>
+                <div class="status-list">
+                    <div class="status-item">
+                        <span>Serveur Principal</span>
+                        <div class="indicator"><div class="dot dot-red"></div> Hors Ligne</div>
+                    </div>
+                    <div class="status-item">
+                        <span>Base de Données</span>
+                        <div class="indicator"><div class="dot dot-green"></div> En Ligne</div>
+                    </div>
+                    <div class="status-item">
+                        <span>API Roblox Sync</span>
+                        <div class="indicator"><div class="dot dot-orange"></div> Instable</div>
+                    </div>
+                    <div class="status-item">
+                        <span>Système de Rangs</span>
+                        <div class="indicator"><div class="dot dot-red"></div> Hors Ligne</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="status-section">
-                <div class="status-item-group">
-                    <div class="status-item">
-                        <span class="status-label"><div class="dot pulse"></div> Serveurs API</span>
-                        <span style="color: var(--success); font-weight: bold; font-size: 0.8rem;">OPÉRATIONNEL</span>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 98%"></div></div>
+            <div class="card">
+                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> Infos Groupe</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">Nous mettons à jour les permissions et le design du site pour une meilleure expérience.</p>
+                <div class="stats" style="display: flex; justify-content: space-between; text-align: center;">
+                    <div><div style="font-weight: 800; font-size: 1.2rem;">12.4K</div><div style="font-size: 0.7rem; color: var(--text-muted);">MEMBRES</div></div>
+                    <div><div style="font-weight: 800; font-size: 1.2rem;">98</div><div style="font-size: 0.7rem; color: var(--text-muted);">EN LIGNE</div></div>
+                    <div><div style="font-weight: 800; font-size: 1.2rem;">V3.2</div><div style="font-size: 0.7rem; color: var(--text-muted);">VERSION</div></div>
                 </div>
-
-                <div class="status-item-group">
-                    <div class="status-item">
-                        <span class="status-label"><div class="dot offline"></div> Base de données</span>
-                        <span style="color: var(--accent-color); font-weight: bold; font-size: 0.8rem;">MAINTENANCE</span>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 45%; background: var(--accent-color)"></div></div>
-                </div>
-
-                <div class="status-item-group">
-                    <div class="status-item">
-                        <span class="status-label"><div class="dot pulse"></div> Assets System</span>
-                        <span style="color: var(--warning); font-weight: bold; font-size: 0.8rem;">CHARGEMENT</span>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 72%; background: var(--warning)"></div></div>
-                </div>
-
-                <div class="console-box" id="console">
-                    </div>
             </div>
 
+            <div class="card">
+                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg> Questions fréquentes</h3>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">Pourquoi le site est fermé ? <span>+</span></div>
+                    <div class="faq-answer">Nous effectuons une migration de base de données pour supporter plus de membres.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">Quand sera-t-il ouvert ? <span>+</span></div>
+                    <div class="faq-answer">L'ouverture est prévue pour bientôt. Suivez notre Discord pour l'annonce officielle.</div>
+                </div>
+            </div>
         </div>
+
+        <div class="terminal" id="terminal">
+            <div class="terminal-header">ROBLOX_OS v4.0.1 - MAINTENANCE_MODE</div>
+            <div id="terminal-content"></div>
+        </div>
+
+        <footer style="margin-top: 60px; text-align: center; color: #444; font-size: 0.8rem; padding-bottom: 40px;">
+            &copy; 2026 Votre Groupe Roblox. Ce site n'est pas affilié à Roblox Corporation.
+        </footer>
     </div>
 
+    <div id="notification-container"></div>
+
     <script>
-        /* =========================================
-           MOTEUR DE PARTICULES (CANVAS)
-           ========================================= */
-        const canvas = document.getElementById('bg-canvas');
+        /* --- MOTEUR DE PARTICULES --- */
+        const canvas = document.getElementById('canvas-bg');
         const ctx = canvas.getContext('2d');
         let particles = [];
 
@@ -401,143 +402,132 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 1 - 0.5;
-                this.speedY = Math.random() * 1 - 0.5;
-                this.color = Math.random() > 0.5 ? '#00a2ff' : '#333';
+                this.size = Math.random() * 1.5;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.alpha = Math.random();
             }
-
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
-
-                if (this.x > canvas.width) this.x = 0;
-                else if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                else if (this.y < 0) this.y = canvas.height;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
             }
-
             draw() {
-                ctx.fillStyle = this.color;
+                ctx.fillStyle = `rgba(0, 162, 255, ${this.alpha})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
 
-        function createParticles() {
-            for (let i = 0; i < 100; i++) {
-                particles.push(new Particle());
-            }
+        function setupParticles() {
+            particles = [];
+            for (let i = 0; i < 150; i++) particles.push(new Particle());
         }
 
-        function animate() {
+        function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => {
                 p.update();
                 p.draw();
             });
-            requestAnimationFrame(animate);
+            requestAnimationFrame(animateParticles);
         }
 
-        window.addEventListener('resize', initCanvas);
+        window.addEventListener('resize', () => {
+            initCanvas();
+            setupParticles();
+        });
+
         initCanvas();
-        createParticles();
-        animate();
+        setupParticles();
+        animateParticles();
 
-        /* =========================================
-           COMPTE À REBOURS
-           ========================================= */
-        // Fixe la date de fin à 2 heures d'ici pour la démo
-        const targetDate = new Date().getTime() + (2 * 60 * 60 * 1000);
+        /* --- EFFET TYPEWRITER (TON MESSAGE) --- */
+        const text = "Bonjour, désolé mais pour l'instant le site ne sera pas ouvert. Notre équipe technique travaille sur des améliorations majeures pour le groupe. Merci de votre patience !";
+        let index = 0;
+        const typewriterEl = document.getElementById('typewriter');
 
-        function updateTimer() {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = d.toString().padStart(2, '0');
-            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
-            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
-            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
-
-            if (diff < 0) {
-                clearInterval(timerInterval);
-                document.querySelector('.timer-container').innerHTML = "<h2>MAINTENANCE TERMINÉE</h2>";
+        function playTypewriter() {
+            if (index < text.length) {
+                typewriterEl.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(playTypewriter, 40);
             }
         }
 
-        const timerInterval = setInterval(updateTimer, 1000);
-        updateTimer();
+        setTimeout(playTypewriter, 1000);
 
-        /* =========================================
-           CONSOLE LOG SIMULATION
-           ========================================= */
-        const consoleEl = document.getElementById('console');
-        const logMessages = [
-            "> Initialisation du protocole...",
-            "> Connexion aux serveurs Roblox...",
-            "> Nettoyage de la base de données...",
-            "> Compilation des nouveaux shaders...",
-            "> Mise à jour des scripts du groupe...",
-            "> Optimisation du cache utilisateur...",
-            "> Vérification des permissions admin...",
-            "> Déploiement du patch v2.4.0...",
-            "> Synchronisation du catalogue...",
-            "> Test de charge en cours...",
-            "> Rejet des connexions entrantes...",
-            "> Mode maintenance activé."
+        /* --- TERMINAL SIMULATION --- */
+        const terminalContent = document.getElementById('terminal-content');
+        const logs = [
+            { c: "fetch", v: "api.roblox.com/v1/groups/security..." },
+            { c: "status", v: "403 - Maintenance Mode Active" },
+            { c: "loading", v: "Assets/Textures/UI_Modern_V3.rbxm" },
+            { c: "sync", v: "Database mirror established in Paris-DC" },
+            { c: "warn", v: "Memory leak detected in 'RankingSystem.lua' - Fixing..." },
+            { c: "patch", v: "Applying CSS-Grid hotfix to homepage" },
+            { c: "info", v: "Connecting to Discord Webhook..." },
+            { c: "success", v: "Webhook connected. Ready to broadcast." },
+            { c: "exec", v: "sh clean_cache.sh" },
+            { c: "process", v: "Verifying member IDs (12402/12402)" }
         ];
 
-        let logIndex = 0;
-
-        function addLog() {
-            if (logIndex >= logMessages.length) logIndex = 0;
+        let logIdx = 0;
+        function addTerminalLine() {
+            const log = logs[logIdx % logs.length];
+            const div = document.createElement('div');
+            div.className = 'line';
+            div.innerHTML = `[${new Date().toLocaleTimeString()}] <span class="cmd">${log.c}</span>: <span class="val">${log.v}</span>`;
+            terminalContent.appendChild(div);
             
-            const line = document.createElement('div');
-            line.className = 'console-line';
-            line.innerText = logMessages[logIndex];
-            consoleEl.appendChild(line);
+            if (terminalContent.childNodes.length > 15) terminalContent.removeChild(terminalContent.firstChild);
             
-            // Garder seulement les 8 dernières lignes
-            if (consoleEl.childNodes.length > 8) {
-                consoleEl.removeChild(consoleEl.firstChild);
-            }
-
-            logIndex++;
-            setTimeout(addLog, Math.random() * 2000 + 1000);
+            document.getElementById('terminal').scrollTop = document.getElementById('terminal').scrollHeight;
+            logIdx++;
+            setTimeout(addTerminalLine, Math.random() * 2000 + 500);
         }
 
-        addLog();
+        addTerminalLine();
 
-        /* =========================================
-           INTERACTIONS
-           ========================================= */
-        document.getElementById('btn-discord').onclick = () => {
-            alert("Redirection vers le Discord du groupe...");
-        };
+        /* --- PROGRESS BAR --- */
+        let progress = 0;
+        function updateProgress() {
+            if (progress < 92) {
+                progress += Math.random() * 0.5;
+                document.getElementById('main-progress').style.width = progress + "%";
+                document.getElementById('progress-val').innerText = Math.floor(progress);
+            }
+            setTimeout(updateProgress, 200);
+        }
+        updateProgress();
 
-        // Effet de survol parallaxe sur la carte
-        const card = document.querySelector('.maintenance-card');
-        document.addEventListener('mousemove', (e) => {
-            let xAxis = (window.innerWidth / 2 - e.pageX) / 50;
-            let yAxis = (window.innerHeight / 2 - e.pageY) / 50;
-            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-        });
+        /* --- NOTIFICATIONS --- */
+        function createNotify(msg) {
+            const container = document.getElementById('notification-container');
+            const n = document.createElement('div');
+            n.className = 'notification';
+            n.innerText = msg;
+            container.appendChild(n);
+            setTimeout(() => n.remove(), 4000);
+        }
 
-        // Reset quand la souris part
-        document.addEventListener('mouseleave', () => {
-            card.style.transform = `rotateY(0deg) rotateX(0deg)`;
-            card.style.transition = "all 0.5s ease";
-        });
+        setTimeout(() => createNotify("🔧 Mise à jour des scripts en cours..."), 3000);
+        setTimeout(() => createNotify("👥 98 membres attendent la réouverture"), 8000);
 
-        document.addEventListener('mouseenter', () => {
-            card.style.transition = "none";
-        });
+        /* --- UI HELPERS --- */
+        function toggleFaq(el) {
+            const answer = el.nextElementSibling;
+            const span = el.querySelector('span');
+            if (answer.style.display === "block") {
+                answer.style.display = "none";
+                span.innerText = "+";
+            } else {
+                answer.style.display = "block";
+                span.innerText = "-";
+            }
+        }
     </script>
 </body>
 </html>
