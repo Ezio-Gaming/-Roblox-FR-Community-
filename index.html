@@ -2,158 +2,153 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>SITE EN TRAVAUX - GROUPE ROBLOX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance - Communauté</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* STYLE SIMPLE ET PROPRE */
         body {
-            background-color: #f4f4f4;
-            color: #333;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             margin: 0;
+            padding: 20px;
         }
 
-        .boite {
-            background-color: white;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 30px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        .card {
+            background: #1e293b;
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            text-align: center;
+            border: 1px solid #334155;
         }
 
         h1 {
-            color: #d32f2f;
-            font-size: 32px;
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #38bdf8;
         }
 
-        .message-important {
-            font-size: 18px;
+        .message {
+            font-size: 16px;
             line-height: 1.6;
-            background-color: #fff3f3;
-            padding: 20px;
-            border-left: 5px solid #d32f2f;
-            margin: 20px 0;
-            text-align: left;
+            color: #94a3b8;
+            margin-bottom: 30px;
         }
 
-        .section-texte {
-            text-align: left;
-            margin-top: 30px;
+        /* Barre de progression */
+        .progress-container {
+            background: #334155;
+            border-radius: 100px;
+            height: 12px;
+            width: 100%;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: #38bdf8;
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .status-text {
             font-size: 14px;
-            color: #666;
-            border-top: 1px solid #eee;
+            color: #38bdf8;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            text-align: left;
+            border-top: 1px solid #334155;
             padding-top: 20px;
         }
 
-        .liste-longue {
-            list-style: none;
-            padding: 0;
+        .faq h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
         }
 
-        .liste-longue li {
-            padding: 5px 0;
-            border-bottom: 1px solid #fafafa;
+        .faq-item {
+            margin-bottom: 15px;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: #f1f5f9;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .faq-answer {
+            color: #64748b;
+            font-size: 14px;
         }
 
         footer {
-            margin-top: 50px;
+            margin-top: 30px;
             font-size: 12px;
-            color: #999;
+            color: #475569;
         }
     </style>
 </head>
 <body>
 
-    <div class="boite">
-        <h1>🚧 Site en Maintenance 🚧</h1>
-
-        <div class="message-important">
-            <strong>Bonjour à tous,</strong><br><br>
-            Désolé, mais pour l'instant le site ne sera pas ouvert. Notre équipe travaille activement sur le développement du groupe et du site pour vous offrir la meilleure expérience possible sur Roblox.<br><br>
-            Merci de votre patience et à très bientôt !
+    <div class="card">
+        <h1>Travaux en cours...</h1>
+        
+        <div class="message">
+            Bonjour, désolé mais pour l'instant le site ne sera pas ouvert. Notre équipe travaille actuellement sur le développement du groupe et l'amélioration du site pour vous offrir une meilleure expérience.
         </div>
 
-        <div class="section-texte">
-            <h3>📌 Informations sur le projet</h3>
-            <p>Voici l'avancée des travaux sur lesquels nous bossons en ce moment :</p>
-            
-            <ul class="liste-longue">
-                <li>• Création de la nouvelle interface utilisateur.</li>
-                <li>• Configuration des scripts de rangs automatiques.</li>
-                <li>• Nettoyage de la base de données des membres.</li>
-                <li>• Test des nouveaux serveurs de jeu.</li>
-                <li>• Mise à jour du règlement intérieur.</li>
-                <li>• Préparation des nouveaux vêtements du groupe.</li>
-                <li>• Vérification de la sécurité anti-bot.</li>
-                <li>• Amélioration du temps de chargement des pages.</li>
-                <li>• Ajout d'un système de tickets pour le support.</li>
-                <li>• Synchronisation avec les serveurs de secours.</li>
-                <li>• Réorganisation des rôles dans le staff.</li>
-                <li>• Correction des bugs de connexion signalés.</li>
-                <li>• Optimisation des images et logos.</li>
-                <li>• Préparation des événements de réouverture.</li>
-                <li>• Vérification des liens de redirection.</li>
-                <li>• Test de la boutique intégrée.</li>
-                <li>• Ajout de nouvelles animations CSS.</li>
-                <li>• Mise en place du journal des modifications.</li>
-                <li>• Rédaction des tutoriels pour les nouveaux membres.</li>
-                <li>• Nettoyage du code source du site.</li>
-                </ul>
+        <div class="progress-container">
+            <div class="progress-bar" id="bar"></div>
         </div>
+        <div class="status-text" id="status">Mise à jour des fichiers : 0%</div>
 
-        <div class="section-texte">
-            <h3>📜 Règlement du Groupe (Extrait)</h3>
-            <p>Pour rappel, voici les règles à respecter :</p>
-            <div id="reglement-long">
-                </div>
+        <div class="faq">
+            <h3>Questions fréquentes</h3>
+            <div class="faq-item">
+                <span class="faq-question">Pourquoi le site est-il fermé ?</span>
+                <span class="faq-answer">Nous refaisons entièrement le système pour que le site soit plus rapide et plus beau.</span>
+            </div>
+            <div class="faq-item">
+                <span class="faq-question">Quand est-ce qu'il va rouvrir ?</span>
+                <span class="faq-answer">Très bientôt ! On finit de tester les dernières fonctionnalités.</span>
+            </div>
         </div>
 
         <footer>
-            Propriété exclusive du Groupe Roblox - Tous droits réservés &copy; 2026
+            &copy; 2026 - Administration du Groupe Roblox
         </footer>
     </div>
 
     <script>
-        /* JAVASCRIPT SIMPLE POUR ALLONGER LA PAGE */
+        // Animation de la barre de progression pour faire "vivant"
+        let width = 0;
+        const bar = document.getElementById('bar');
+        const status = document.getElementById('status');
+
+        function move() {
+            if (width < 85) { // On s'arrête à 85% pour faire réaliste
+                width += Math.random() * 2;
+                if (width > 85) width = 85;
+                bar.style.width = Math.floor(width) + '%';
+                status.innerText = "Déploiement des serveurs : " + Math.floor(width) + "%";
+            }
+        }
         
-        const reglementDiv = document.getElementById('reglement-long');
-        let contenuReglement = "";
-
-        // On crée une boucle qui écrit 100 règles pour faire un code très long
-        for (let i = 1; i <= 100; i++) {
-            contenuReglement += "Règle n°" + i + " : Respecter le bon fonctionnement du site et ne pas tenter de modifier le code source.<br>";
-        }
-
-        reglementDiv.innerHTML = contenuReglement;
-
-        /* FONCTIONS DE REMPLISSAGE (pour le poids du fichier) */
-        function verifMaintenance() {
-            console.log("Statut : En cours de développement...");
-        }
-
-        // On simule des étapes techniques pour le fun
-        const etapes = [
-            "Chargement...", "Vérification...", "Nettoyage...", 
-            "Mise à jour...", "Finalisation...", "Attente..."
-        ];
-
-        etapes.forEach(etape => {
-            console.log("Étape système : " + etape);
-        });
-
-        // Plus de lignes inutiles pour atteindre ton quota de 500 lignes
-        const configSite = {
-            actif: false,
-            version: "1.0.2",
-            createur: "Admin",
-            langue: "Français",
-            maintenance: true,
-            priorite: "Haute",
-            type: "Communautaire"
-        };
+        // Mise à jour toutes les 2 secondes environ
+        setInterval(move, 2000);
     </script>
 
 </body>
