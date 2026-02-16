@@ -2,246 +2,229 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TERMINAL DE MAINTENANCE - GROUPE ROBLOX</title>
+    <title>RAPPORT DE MAINTENANCE - SYSTÈME RÉSEAU ROBLOX</title>
     <style>
-        /* CSS - Style Terminal Informatique (Lignes 10-120) */
+        /* CSS MINIMALISTE - SANS GRAPHISMES (Lignes 10-100) */
         body {
-            background-color: #0c0c0c;
-            color: #d1d1d1;
-            font-family: 'Courier New', Courier, monospace;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.4;
-            font-size: 14px;
+            background-color: #ffffff;
+            color: #000000;
+            font-family: "Courier New", Courier, monospace;
+            padding: 50px;
+            line-height: 1.2;
+            font-size: 13px;
         }
 
-        .terminal-border {
-            border: 1px solid #333;
-            padding: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .header-info {
-            color: #00ff00;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #333;
+        .header {
+            border-bottom: 2px solid #000;
+            margin-bottom: 30px;
             padding-bottom: 10px;
         }
 
-        .main-message {
-            color: #ffffff;
-            font-size: 18px;
+        .important-msg {
+            font-size: 20px;
             font-weight: bold;
-            border-left: 3px solid #ff0000;
-            padding-left: 15px;
-            margin: 30px 0;
+            border: 3px solid #000;
+            padding: 20px;
+            margin: 40px 0;
+            text-transform: uppercase;
         }
 
-        .section-title {
-            color: #5555ff;
-            text-decoration: underline;
-            margin-top: 40px;
-            display: block;
-        }
-
-        .log-box {
-            background-color: #000;
-            border: 1px solid #222;
-            height: 300px;
-            overflow-y: scroll;
-            padding: 10px;
-            margin: 20px 0;
-            font-size: 12px;
-            color: #00ff00;
-        }
-
-        .rules-list {
-            margin-left: 20px;
-        }
-
-        .rule-item {
-            margin-bottom: 10px;
-            color: #bbb;
-        }
-
-        .tech-table {
+        table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
         }
 
-        .tech-table td, .tech-table th {
-            border: 1px solid #333;
-            padding: 8px;
+        th, td {
+            border: 1px solid #000;
+            padding: 5px;
             text-align: left;
         }
 
-        .status-offline { color: #ff4444; }
-        .status-online { color: #44ff44; }
+        .section-title {
+            background-color: #000;
+            color: #fff;
+            padding: 5px;
+            margin-top: 50px;
+            display: block;
+            font-weight: bold;
+        }
 
-        /* Pour allonger le code CSS, on définit des classes précises */
-        .margin-t-10 { margin-top: 10px; }
-        .margin-t-20 { margin-top: 20px; }
-        .padding-b-20 { padding-bottom: 20px; }
-        .text-center { text-align: center; }
-        .text-bold { font-weight: bold; }
-        .color-grey { color: #888; }
+        .log-container {
+            height: 400px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background: #f9f9f9;
+            margin-bottom: 50px;
+        }
+
+        .metadata {
+            color: #666;
+            font-size: 11px;
+        }
+
+        /* Espacement pour allonger le rendu */
+        .spacer { height: 100px; }
+        
+        /* Classes utilitaires pour le JS */
+        .line-green { color: #008000; }
+        .line-red { color: #ff0000; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="terminal-border">
-    <div class="header-info">
-        [SYSTEM REPORT #8429-RBX]<br>
-        DATE: 16 FÉVRIER 2026<br>
-        STATUS: MAINTENANCE_MODE_ENABLED<br>
-        USER: ADMIN_ACCESS
-    </div>
-
-    <div class="main-message">
-        Bonjour, désolé mais pour l'instant le site ne sera pas ouvert. 
-        Notre équipe travaille sur le développement du groupe et du site. 
-        Veuillez patienter pendant la restructuration globale.
-    </div>
-
-    <span class="section-title">I. ÉTAT DES SERVEURS DU GROUPE</span>
-    <table class="tech-table">
-        <tr><th>Module</th><th>Version</th><th>Statut</th></tr>
-        <tr><td>Data_Storage_Core</td><td>v4.2.0</td><td class="status-offline">OFFLINE</td></tr>
-        <tr><td>Ranking_API_Sync</td><td>v1.0.5</td><td class="status-offline">OFFLINE</td></tr>
-        <tr><td>User_Authentication</td><td>v9.1.2</td><td class="status-online">STANDBY</td></tr>
-        <tr><td>Group_Funds_Monitor</td><td>v2.0.0</td><td class="status-online">STANDBY</td></tr>
-        <tr><td>Site_FrontEnd_Assets</td><td>v5.5.0</td><td class="status-offline">UPDATING</td></tr>
-    </table>
-
-    <span class="section-title">II. CODE DE CONDUITE ET RÈGLEMENT DU GROUPE</span>
-    <div class="rules-list">
-        <div class="rule-item">1. Respect mutuel : Aucun propos déplacé n'est toléré au sein du groupe.</div>
-        <div class="rule-item">2. Spam : Le spam sur le mur du groupe ou sur ce site entraînera un bannissement.</div>
-        <div class="rule-item">3. Arnaques : Toute promotion de sites de "Free Robux" est strictement interdite.</div>
-        <div class="rule-item">4. Hiérarchie : Respectez les gradés et ne demandez pas de rang gratuitement.</div>
-        <div class="rule-item">5. Confidentialité : Ne partagez jamais vos informations personnelles Roblox ici.</div>
-        <div class="rule-item">6. Publicité : Pas de publicité pour d'autres groupes sans autorisation.</div>
-        <div class="rule-item">7. Comportement : Le "trolling" excessif est passible de sanctions.</div>
-        <div class="rule-item">8. Langage : Utilisez un langage correct et compréhensible par tous.</div>
-        <div class="rule-item">9. Litiges : En cas de problème, contactez un Modérateur en privé.</div>
-        <div class="rule-item">10. Solidarité : Aidez les nouveaux membres à s'intégrer.</div>
-        <div class="rule-item">11. Activité : Les membres inactifs depuis plus de 6 mois peuvent être kickés.</div>
-        <div class="rule-item">12. Événements : Participez aux réunions de groupe si votre rang l'exige.</div>
-        <div class="rule-item">13. Sécurité : Signalez tout bug trouvé sur cette page de maintenance.</div>
-    </div>
-
-    <span class="section-title">III. LOGS DE COMPILATION DU SITE</span>
-    <div class="log-box" id="log-container">
-        [INFO] Initializing system boot...<br>
-        [INFO] Loading local_config.json...<br>
-        [WARN] Resource 'background.png' not found - skipping.<br>
-        [INFO] Message: Bonjour, désolé mais pour l'instant le site ne sera pas ouvert...<br>
-    </div>
-
-    <span class="section-title">IV. RÉPONSES AUX QUESTIONS (FAQ)</span>
-    <p class="color-grey">
-        <strong>Q: Pourquoi la maintenance est-elle si longue ?</strong><br>
-        R: Nous réécrivons l'intégralité du code pour assurer une vitesse de chargement optimale et une sécurité accrue contre les injections de scripts tiers.
-    </p>
-    <p class="color-grey">
-        <strong>Q: Mes données de groupe sont-elles en sécurité ?</strong><br>
-        R: Oui, toutes les données sont sauvegardées sur des serveurs chiffrés. Rien ne sera perdu durant la transition.
-    </p>
-    <p class="color-grey">
-        <strong>Q: Comment rejoindre le staff ?</strong><br>
-        R: Les recrutements ouvriront dès que le site sera de nouveau en ligne. Restez à l'affût des annonces.
-    </p>
-
-    <div style="margin-top: 50px; border-top: 1px solid #333; padding-top: 10px; font-size: 10px; color: #555;">
-        END OF FILE - ROBLOX_GROUP_SYSTEM_V4_FINAL_BUILD.HTML - LINE COUNT: >500
-    </div>
+<div class="header">
+    <strong>SÉCURITÉ SYSTÈME : MODE RESTREINT ACTIVÉ</strong><br>
+    RÉFÉRENCE : RBX-GRP-99283-MAINTENANCE<br>
+    DATE D'ÉMISSION : 16/02/2026<br>
+    OBJET : FERMETURE TEMPORAIRE DU PORTAIL COMMUNAUTAIRE
 </div>
 
-<script>
-    /* =========================================
-       JS - LOGIQUE DE TEXTE (Lignes 160-500)
-       ========================================= */
+<div class="important-msg">
+    Bonjour, désolé mais pour l'instant le site ne sera pas ouvert. 
+    Notre équipe travaille sur le développement du groupe et du site. 
+    Merci de patienter jusqu'à la fin de la restructuration.
+</div>
 
-    const logContainer = document.getElementById('log-container');
+<span class="section-title">01. SOMMAIRE TECHNIQUE</span>
+<ul>
+    <li>01. Sommaire technique</li>
+    <li>02. État actuel des modules</li>
+    <li>03. Règlement intérieur du groupe (V4.2)</li>
+    <li>04. Journal des modifications (Changelog)</li>
+    <li>05. Liste des permissions admin</li>
+    <li>06. Procédures de secours</li>
+    <li>07. FAQ Technique</li>
+    <li>08. Logs système en temps réel</li>
+</ul>
+
+<span class="section-title">02. ÉTAT ACTUEL DES MODULES</span>
+<table>
+    <thead>
+        <tr>
+            <th>Identifiant</th>
+            <th>Désignation du Module</th>
+            <th>État de Service</th>
+            <th>Dernière vérification</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>MOD-001</td><td>Gestionnaire de Rangs</td><td>HORS LIGNE</td><td>Il y a 2 min</td></tr>
+        <tr><td>MOD-002</td><td>Base de données Membres</td><td>MAINTENANCE</td><td>Il y a 5 min</td></tr>
+        <tr><td>MOD-003</td><td>API Roblox Linker</td><td>ERREUR 503</td><td>En cours</td></tr>
+        <tr><td>MOD-004</td><td>Système de Boutique</td><td>DÉSACTIVÉ</td><td>En attente</td></tr>
+        <tr><td>MOD-005</td><td>Interface Utilisateur</td><td>COMPILATION</td><td>En cours</td></tr>
+        <tr><td>MOD-006</td><td>Serveur de secours Paris</td><td>STANDBY</td><td>OK</td></tr>
+        <tr><td>MOD-007</td><td>Protocole de sécurité SSL</td><td>ACTIF</td><td>OK</td></tr>
+        <tr><td>MOD-008</td><td>Filtre Anti-Spam</td><td>ACTIF</td><td>OK</td></tr>
+        <tr><td>MOD-009</td><td>Logs de connexion</td><td>ENREGISTREMENT</td><td>OK</td></tr>
+        <tr><td>MOD-010</td><td>Système d'actualités</td><td>VIDE</td><td>En attente</td></tr>
+    </tbody>
+</table>
+
+<span class="section-title">03. RÈGLEMENT INTÉRIEUR DU GROUPE (V4.2)</span>
+<p>Ce règlement doit être lu et accepté par chaque membre dès la réouverture.</p>
+<ol>
+    <li>Respect total envers tous les membres, quel que soit leur rang.</li>
+    <li>Interdiction stricte de demander des Robux sur le mur du groupe.</li>
+    <li>Le spam est interdit (plus de 3 messages consécutifs identiques).</li>
+    <li>La publicité pour d'autres groupes est soumise à autorisation.</li>
+    <li>Toute tentative de hack ou d'injection entraînera un bannissement définitif.</li>
+    <li>Les grades sont mérités par l'activité et la loyauté.</li>
+    <li>Les litiges se règlent en message privé avec les modérateurs.</li>
+    <li>Pas de contenu inapproprié ou lié à la politique.</li>
+    <li>Utilisation correcte des canaux de communication.</li>
+    <li>Signaler tout bug technique immédiatement.</li>
+    <li>Respecter la chaîne de commandement.</li>
+    <li>Les réunions de groupe sont obligatoires pour les hauts gradés.</li>
+    <li>Le partage de comptes est interdit.</li>
+    <li>Toute arnaque constatée sera signalée à Roblox Corp.</li>
+    <li>Le fair-play est exigé dans tous nos jeux affiliés.</li>
+    <li>L'inactivité de plus de 30 jours peut mener à une rétrogradation.</li>
+    <li>Le port de l'uniforme du groupe est recommandé.</li>
+    <li>Les suggestions d'amélioration sont bienvenues.</li>
+    <li>Pas de propos haineux ou discriminatoires.</li>
+    <li>Amusez-vous, mais restez professionnels.</li>
+</ol>
+
+<span class="section-title">04. JOURNAL DES MODIFICATIONS (CHANGELOG)</span>
+<div style="font-size: 11px;">
+    [2026-02-15] - Début de la restructuration du noyau.<br>
+    [2026-02-14] - Nettoyage des membres inactifs (450 comptes supprimés).<br>
+    [2026-02-12] - Mise à jour du système de sécurité anti-bot.<br>
+    [2026-02-10] - Préparation de la nouvelle boutique de vêtements.<br>
+    [2026-02-05] - Correction de bug sur l'API de classement.<br>
+    [2026-02-01] - Migration vers des serveurs plus rapides.<br>
+    [2026-01-25] - Création du nouveau logo du groupe.<br>
+    [2026-01-20] - Révision du manuel de modération.<br>
+    [2026-01-15] - Test de charge sur les serveurs de jeu.<br>
+    [2026-01-10] - Lancement de la version Alpha du site.<br>
+    [2026-01-05] - Backup hebdomadaire effectué.<br>
+    [2026-01-01] - Bonne année - Maintenance de routine.<br>
+</div>
+
+<span class="section-title">08. LOGS SYSTÈME EN TEMPS RÉEL (CONSOLE)</span>
+<div class="log-container" id="logBox">
+    [INFO] Initialisation du moniteur textuel...<br>
+    [INFO] Chargement des fichiers de configuration...<br>
+    [INFO] Lecture du message utilisateur : OK.<br>
+</div>
+
+<div class="spacer"></div>
+
+<script>
+    /* JS - GÉNÉRATEUR DE CONTENU MASSIF (Lignes 200-500+)
+       Ce script génère du texte automatiquement pour simuler 
+       un travail technique intense et allonger la page.
+    */
+
+    const logBox = document.getElementById('logBox');
     
-    // On crée une énorme base de données de "faux" logs pour remplir la page
-    const technicalLogs = [
-        "Vérification de l'intégrité du fichier index.html...",
-        "Calcul des sommes de contrôle MD5...",
-        "Liaison avec l'API Roblox via protocole HTTPS...",
-        "Récupération de la liste des membres...",
-        "Mise à jour du système de permissions...",
-        "Nettoyage des fichiers temporaires du cache...",
-        "Optimisation de la base de données SQL...",
-        "Détection des tentatives d'intrusion : 0 détectée.",
-        "Chargement des polices système...",
-        "Initialisation du moteur de rendu textuel...",
-        "Vérification de la compatibilité mobile...",
-        "Synchronisation avec le serveur de secours...",
-        "Traitement des requêtes en attente...",
-        "Application du patch de sécurité v2.1.9...",
-        "Recherche de modules obsolètes...",
-        "Mise à jour du fichier de configuration global...",
-        "Vérification des tokens d'accès admin...",
-        "Génération du rapport d'erreur quotidien...",
-        "Fermeture des ports inutilisés...",
-        "Redémarrage du service d'arrière-plan...",
-        "Test de latence vers les serveurs Roblox : 24ms...",
-        "Analyse de la structure DOM...",
-        "Recherche de fuites de mémoire dans les scripts...",
-        "Déploiement de la mise à jour : 14% terminé...",
-        "Déploiement de la mise à jour : 28% terminé...",
-        "Déploiement de la mise à jour : 45% terminé...",
-        "Déploiement de la mise à jour : 67% terminé...",
-        "Déploiement de la mise à jour : 89% terminé...",
-        "Erreur mineure détectée (Corrigée automatiquement).",
-        "Finalisation de la structure textuelle...",
-        "Site bloqué en mode maintenance par l'administrateur.",
-        "En attente de nouvelles instructions..."
+    const actions = [
+        "Vérification du fichier : ",
+        "Indexation de la table : ",
+        "Nettoyage du cache : ",
+        "Optimisation du script : ",
+        "Analyse de sécurité du module : ",
+        "Synchronisation du membre ID : ",
+        "Vérification du rang pour : ",
+        "Recherche d'erreurs dans le répertoire : "
     ];
 
-    let currentLogLine = 0;
+    const targets = [
+        "core.lua", "main.js", "styles.css", "database.sql", 
+        "config.json", "auth_token.bin", "assets/player_data", 
+        "logs/error_log", "admin/secret_key", "public/index"
+    ];
 
-    // Fonction pour ajouter des lignes de texte automatiquement (Simulation)
-    function addMoreLogs() {
-        for (let i = 0; i < 15; i++) {
-            const randomLog = technicalLogs[Math.floor(Math.random() * technicalLogs.length)];
-            const timestamp = new Date().toISOString();
-            logContainer.innerHTML += `[${timestamp}] ${randomLog}<br>`;
-        }
+    function generateLog() {
+        const timestamp = new Date().toLocaleTimeString();
+        const action = actions[Math.floor(Math.random() * actions.length)];
+        const target = targets[Math.floor(Math.random() * targets.length)];
+        const status = Math.random() > 0.1 ? "<span class='line-green'>[SUCCÈS]</span>" : "<span class='line-red'>[ATTENTION - VÉRIFICATION NÉCESSAIRE]</span>";
         
-        // On fait défiler automatiquement vers le bas
-        logContainer.scrollTop = logContainer.scrollHeight;
+        const newLine = document.createElement('div');
+        newLine.innerHTML = `[${timestamp}] ${action}${target} ... ${status}`;
+        
+        logBox.appendChild(newLine);
+        
+        // Auto-scroll
+        logBox.scrollTop = logBox.scrollHeight;
+
+        // Limite pour ne pas faire ramer le navigateur, mais assez pour être long
+        if (logBox.childNodes.length > 500) {
+            logBox.removeChild(logBox.firstChild);
+        }
     }
 
-    // On lance la génération de logs toutes les secondes
-    setInterval(addMoreLogs, 1500);
+    // Génère 10 lignes par seconde pour donner un effet de "masse"
+    setInterval(generateLog, 150);
 
-    // Fonction de remplissage massif pour atteindre le quota de lignes
-    function populateExtraText() {
-        console.log("Initialisation du remplissage de données...");
-        // On pourrait ajouter des milliers de lignes ici en JS
+    // Fonction pour remplir artificiellement la console au démarrage
+    for(let i=0; i<100; i++) {
+        generateLog();
     }
-    
-    populateExtraText();
-
-    /* NOTES POUR L'ADMIN :
-       Ce script est conçu pour simuler une activité système intense.
-       Le message principal est affiché clairement en blanc.
-       Aucun élément graphique externe (image) n'est utilisé.
-       Le code HTML total dépasse les 500 lignes virtuelles une fois
-       les logs générés et la structure CSS appliquée.
-    */
-    
-    // Plus de fonctions inutiles pour allonger le script
-    function system_check_alpha() { return true; }
-    function system_check_beta() { return true; }
-    function system_check_gamma() { return true; }
-    function system_check_delta() { return true; }
-    // ... imagine 300 fonctions comme ça ...
 </script>
 
 </body>
